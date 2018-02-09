@@ -74,12 +74,18 @@ class SagePay
 
     public function setConfig($configName,$value)
     {
-
+        $_method = "set".ucfirst($configName);
+        if(method_exists($this->api->config,$_method)){
+            $this->api->config->{$_method}($value);
+        }
     }
 
     public function getConfig($configName)
     {
-
+        $_method = "get".ucfirst($configName);
+        if(method_exists($this->api->config,$_method)){
+            $this->api->config->{$_method}();
+        }
     }
 
     public function decode($cryptQS , $string = false)
